@@ -52,7 +52,7 @@ if ($_SESSION["userId"] != $getEvent["f_kuenstler_id"]) {
 						}
 					}
 					?>
-				<div class="col-lg-3 col-md-4 col-6">
+				<div class="col-lg-3 col-md-4 col-6 gallery_checkbox">
 					<input type="checkbox" name="images[]" id="checkbox<?php echo $allImages[$i]["id"]; ?>" value="<?php echo $allImages[$i]["id"]; ?>" <?php echo $checked; ?>/>
 					<label for="checkbox<?php echo $allImages[$i]["id"]; ?>"><img src="./uploads/<?php echo $allImages[$i]["path"]; ?>" /></label>
 				</div>

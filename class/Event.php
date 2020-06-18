@@ -26,8 +26,9 @@ class Event
 			$query = "select * FROM images WHERE id = ?";
 			$filter = [$image];
 			$imageResult = $this->ds->query($query, $filter);
-
-			$listImages[] = $imageResult[0];
+			if($imageResult){
+				$listImages[] = $imageResult[0];
+			}
 		}
 		return $listImages;
 
