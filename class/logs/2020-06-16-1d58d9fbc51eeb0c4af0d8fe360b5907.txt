@@ -1,0 +1,44 @@
+Time : 22:22:46
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'meta.kuenstler.id' in 'on clause'
+Raw SQL : select * FROM events 
+					LEFT JOIN meta ON events.id = meta.event_id
+					LEFT JOIN kuenstler ON events.f_kuenstler_id=meta.kuenstler.id
+
+Time : 22:22:16
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'events.kuenstler_id' in 'on clause'
+Raw SQL : select * FROM events 
+					LEFT JOIN meta ON events.id = meta.event_id
+					LEFT JOIN kuenstler ON events.kuenstler_id=meta.kuenstler.id
+
+Time : 22:22:13
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'events.kuenstler_id' in 'on clause'
+Raw SQL : select * FROM events 
+					LEFT JOIN meta ON events.id = meta.event_id
+					LEFT JOIN kuenstler ON events.kuenstler_id=kuenstler.id
+					WHERE events.id = ?
+
+Time : 22:19:36
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'events.kuenstler_id' in 'on clause'
+Raw SQL : select * FROM events 
+					LEFT JOIN meta ON events.id = meta.event_id
+					LEFT JOIN kuenstler ON events.kuenstler_id=kuenstler.id
+					WHERE events.id = ?
+
+Time : 22:18:34
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'events.f_kunstler_id' in 'on clause'
+Raw SQL : select * FROM events 
+					LEFT JOIN meta ON events.id = meta.event_id
+					LEFT JOIN kuenstler ON kuenstler.id = events.f_kunstler_id
+					WHERE kunstler_id = ?
+
+Time : 17:55:22
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'events_id' in 'where clause'
+Raw SQL : select * FROM events WHERE events_id = ?
+
+Time : 16:26:26
+SQLSTATE[HY000]: General error: 2031 
+Raw SQL : select * FROM kuenstler WHERE id = ?
+
+Time : 16:25:20
+SQLSTATE[HY000]: General error: 2031 
+Raw SQL : select * FROM kuenstler WHERE id = ?

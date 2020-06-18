@@ -1,0 +1,15 @@
+Time : 21:25:04
+SQLSTATE[HY000]: General error: 2031 
+Raw SQL : INSERT INTO images (path) VALUES(?)
+
+Time : 20:21:06
+SQLSTATE[HY000] [2002] Es konnte keine Verbindung hergestellt werden, da der Zielcomputer die Verbindung verweigerte.
+
+
+Time : 16:39:57
+SQLSTATE[HY000]: General error: 2031 
+Raw SQL : DELETE FROM events WHERE id = ?
+
+Time : 16:37:40
+SQLSTATE[HY000]: General error: 2031 
+Raw SQL : DELETE FROM events WHERE id = ?
