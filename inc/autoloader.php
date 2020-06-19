@@ -1,9 +1,9 @@
 <?php
 
-function loadClasses($className){
-	$path = "klassen/";
-	$extension = ".php";
-	$fullPath = $className . $extension;
-	include_once $fullPath;
+spl_autoload_register('AutoLoader');
+
+function AutoLoader($className)
+{
+	$file = str_replace('\\',DIRECTORY_SEPARATOR, $className);
+	require_once $file . '.php';
 }
-spl_autoload_register('loadClasses');

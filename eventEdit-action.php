@@ -5,9 +5,9 @@ if (empty($_SESSION["userId"])) {
 	header("Location: index.php");
 	exit();
 }
-use klassen\Event;
 
-$event = new Event();
+
+$event = new \klassen\Event();
 
 if (! empty($_POST["eventName"])) {
 	$validate = true;

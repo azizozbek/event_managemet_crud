@@ -5,8 +5,8 @@ if (empty($_SESSION["userId"])) {
 	header("Location: index.php");
 	exit();
 }
-use klassen\Image;
-$images = new Image();
+
+$images = new \klassen\Image();
 $getImages = $images->selectAllimages();
 $imageCount = count($getImages);
 ?>

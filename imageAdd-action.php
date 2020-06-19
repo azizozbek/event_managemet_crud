@@ -5,9 +5,8 @@ if (empty($_SESSION["userId"])) {
 	header("Location: index.php");
 	exit();
 }
-use klassen\Image;
-require 'klassen/Image.php';
-$image = new Image();
+
+$image = new \klassen\Image();
 
 
 

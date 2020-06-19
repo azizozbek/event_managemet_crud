@@ -1,9 +1,9 @@
 <?php
 include_once 'inc/autoloader.php';
 require "inc/sessionHeader.php";
-use klassen\Event;
 
-$event = new Event();
+
+$event = new \klassen\Event();
 
 if (! empty($_POST["eventName"])) {
 	$validate = true;

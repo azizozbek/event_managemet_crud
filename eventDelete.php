@@ -1,7 +1,7 @@
 <?php
 include_once 'inc/autoloader.php';
 require "inc/sessionHeader.php";
-use klassen\Event;
+
 
 if (empty($_SESSION["userId"])) {
 	header("Location: index.php");
@@ -9,7 +9,7 @@ if (empty($_SESSION["userId"])) {
 }
 
 
-$event = new Event();
+$event = new \klassen\Event();
 $getEvent = $event->getSingleEvent($_REQUEST["eventID"]);
 if ($_SESSION["userId"] != $getEvent["f_kuenstler_id"]) {
 	header("Location: index.php");

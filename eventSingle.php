@@ -2,9 +2,7 @@
 include_once 'inc/autoloader.php';
 require "inc/sessionHeader.php";
 
-use klassen\Event;
-
-$event = new Event();
+$event = new \klassen\Event();
 $getEvents = $event->getSingleEvent($_REQUEST["eventID"]);
 
 ?>

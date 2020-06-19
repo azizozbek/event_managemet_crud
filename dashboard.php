@@ -1,14 +1,12 @@
 <?php
-use klassen\Event;
 include_once 'inc/autoloader.php';
-
 require "inc/sessionHeader.php";
 if (empty($_SESSION["userId"])) {
 	header("Location: index.php");
 	exit();
 }
 
-$event = new Event();
+$event = new \klassen\Event();
 
 ?>
 <html>
@@ -21,7 +19,7 @@ $event = new Event();
 		    $getEvents = $event->getEventMetaByUserID($_SESSION["userId"]);
 		    $evensCount = count($getEvents);
 		    if(!$getEvents){
-		    	echo "<div class=\"alert alert-light\" role=\"alert\">Noch kein Event</div>";
+		    	echo "<div class=\"alert alert-light\" role=\"alert\">Du hast noch kein Event erstellt.</div>";
 		    }
 		    for ($i=0;$i<$evensCount;$i++){
 			    $hashedID = password_hash($_SESSION["userId"], PASSWORD_DEFAULT);

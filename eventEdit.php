@@ -4,12 +4,9 @@ require "inc/sessionHeader.php";
 if (empty($_SESSION["userId"])) {
 	header("Location: index.php");
 }
-use klassen\Event;
-use klassen\Image;
 
-require 'klassen/Image.php';
-$event = new Event();
-$image = new Image();
+$event = new \klassen\Event();
+$image = new \klassen\Image();
 $getEvent = $event->getSingleEvent($_REQUEST["eventID"]);
 $allImages = $image->selectAllimages();
 

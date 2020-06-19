@@ -1,7 +1,7 @@
 <?php
 include_once 'inc/autoloader.php';
 require "inc/sessionHeader.php";
-use klassen\Kuenstler;
+
 
 if (! empty($_POST["login"])) {
 	$validate = true;
@@ -10,7 +10,7 @@ if (! empty($_POST["login"])) {
     $captcha = filter_var($_POST["captcha"], FILTER_SANITIZE_STRING);
 	$captcha_code = $_SESSION['captcha']['code'];
 
-    $member = new Kuenstler();
+    $member = new \klassen\Kuenstler();
 
 	if(empty($username) ||  empty($password) || empty($captcha)){
 		$_SESSION["message"] = ["type" => "warning", "text" => "Bitte füllen Sie die Felder aus"];

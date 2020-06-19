@@ -1,8 +1,8 @@
 <?php
 require "inc/sessionHeader.php";
 include_once 'inc/autoloader.php';
-use klassen\Kuenstler;
-$member = new Kuenstler();
+
+$member = new \klassen\Kuenstler();
 
 if (! empty($_POST["register"])) {
 	$validate = true;
