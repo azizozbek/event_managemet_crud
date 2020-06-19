@@ -1,14 +1,13 @@
 <?php
-namespace eventify;
+use klassen\Event;
+include_once 'inc/autoloader.php';
+
 require "inc/sessionHeader.php";
 if (empty($_SESSION["userId"])) {
 	header("Location: index.php");
 	exit();
 }
-use eventify\Kuenstler;
-use eventify\Event;
-require  'class/Kuenstler.php';
-require  'class/Event.php';
+
 $event = new Event();
 
 ?>
@@ -21,6 +20,9 @@ $event = new Event();
 		    <?php
 		    $getEvents = $event->getEventMetaByUserID($_SESSION["userId"]);
 		    $evensCount = count($getEvents);
+		    if(!$getEvents){
+		    	echo "<div class=\"alert alert-light\" role=\"alert\">Noch kein Event</div>";
+		    }
 		    for ($i=0;$i<$evensCount;$i++){
 			    $hashedID = password_hash($_SESSION["userId"], PASSWORD_DEFAULT);
 			    ?>

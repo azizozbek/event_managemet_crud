@@ -1,14 +1,14 @@
 <?php
-namespace Eventify;
+include_once 'inc/autoloader.php';
 require "inc/sessionHeader.php";
-use eventify\Event;
+use klassen\Event;
 
 if (empty($_SESSION["userId"])) {
 	header("Location: index.php");
 	exit();
 }
 
-require  'class/Event.php';
+
 $event = new Event();
 $getEvent = $event->getSingleEvent($_REQUEST["eventID"]);
 if ($_SESSION["userId"] != $getEvent["f_kuenstler_id"]) {

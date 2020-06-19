@@ -1,9 +1,8 @@
 <?php
-namespace eventify;
+namespace klassen;
 
 class Kuenstler
 {
-
 	private $ds;
 
     function __construct()
@@ -13,22 +12,16 @@ class Kuenstler
 
     }
 
-    function getMemberById($memberId)
-    {
-        $query = "select * FROM kuenstler WHERE id = ?";
-	    $filter = [$memberId];
-        $memberResult = $this->ds->query($query, $filter);
-
-        return $memberResult[0];
-    }
-
 	function checkUserExitenz($username)
 	{
 		$query = "select * FROM kuenstler WHERE username = ?";
 		$filter = [$username];
 		$memberResult = $this->ds->query($query,$filter);
-
-		return $memberResult[0];
+		if($memberResult) {
+			return $memberResult[0];
+		}else{
+			return false;
+		}
 	}
 
     

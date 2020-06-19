@@ -1,6 +1,5 @@
 <?php
-namespace eventify;
-
+namespace klassen;
 
 class Event
 {
@@ -94,6 +93,7 @@ class Event
  					kuenstler.fullname
  					FROM events 
 					LEFT JOIN kuenstler ON events.f_kuenstler_id=kuenstler.id
+					ORDER BY date 
 					";
 		$eventResult = $this->ds->query($query);
 		$eventCount = count($eventResult);

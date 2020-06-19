@@ -1,9 +1,9 @@
 <?php
-namespace eventify;
+include_once 'inc/autoloader.php';
 require "inc/sessionHeader.php";
 
-use eventify\Event;
-require  'class/Event.php';
+use klassen\Event;
+
 $event = new Event();
 $getEvents = $event->getSingleEvent($_REQUEST["eventID"]);
 

@@ -1,5 +1,5 @@
 <?php
-namespace eventify;
+namespace klassen;
 
 class Image
 {

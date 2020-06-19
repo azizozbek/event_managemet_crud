@@ -1,4 +1,11 @@
-<?php require "inc/sessionHeader.php"; ?>
+<?php require "inc/sessionHeader.php";
+if (!empty($_SESSION["userId"])) {
+	header("Location: dashboard.php");
+	exit();
+}
+include("inc/captcha.php");
+$_SESSION['captcha'] = captcha();
+?>
 <html>
 <?php require "inc/header.php" ?>
     <div>
@@ -45,6 +52,15 @@
                         <input name="password2" id="password2" type="password"  pattern=".{6,}" class="input-box" required>
                     </div>
                 </div>
+	            <div class="field-column">
+		            <div>
+			            <label for="captcha">Captcha</label><span id="captcha_info" class="error-info"></span>
+		            </div>
+		            <div>
+			            <input name="captcha" id="captcha" type="text" class="input-box">
+			            <?php echo '<img src="' . $_SESSION['captcha']['image_src'] . '" alt="CAPTCHA code">'; ?>
+		            </div>
+	            </div>
                 <div class=field-column>
                     <div>
                         <input type="submit" name="register" value="Register" class="btnLogin"></span>
@@ -67,12 +83,14 @@
         document.getElementById("password2_info").innerHTML = "";
         document.getElementById("fullname_info").innerHTML = "";
         document.getElementById("email_info").innerHTML = "";
+        document.getElementById("captcha_info").innerHTML = "";
 
         var userName = document.getElementById("username").value;
         var password = document.getElementById("password").value;
         var password2 = document.getElementById("password2").value;
         var fullname = document.getElementById("fullname").value;
         var email = document.getElementById("email").value;
+        var captcha = document.getElementById("captcha").value;
 
         if(userName == "")
         {
@@ -97,6 +115,11 @@
         if(email == "")
         {
         	document.getElementById("email_info").innerHTML = "Pflicht";
+            $valid = false;
+        }
+        if(captcha == "")
+        {
+            document.getElementById("captcha_info").innerHTML = "required";
             $valid = false;
         }
 

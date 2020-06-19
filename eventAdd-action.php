@@ -1,8 +1,8 @@
 <?php
-namespace Eventify;
+include_once 'inc/autoloader.php';
 require "inc/sessionHeader.php";
-use eventify\Event;
-require  'class/Event.php';
+use klassen\Event;
+
 $event = new Event();
 
 if (! empty($_POST["eventName"])) {

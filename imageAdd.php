@@ -1,5 +1,5 @@
 <?php
-namespace eventify;
+include_once 'inc/autoloader.php';
 require "inc/sessionHeader.php";
 if (empty($_SESSION["userId"])) {
 	header("Location: index.php");

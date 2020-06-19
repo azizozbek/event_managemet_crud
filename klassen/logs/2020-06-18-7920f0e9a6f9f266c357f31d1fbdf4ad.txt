@@ -1,3 +1,14 @@
+Time : 19:50:34
+SQLSTATE[42S02]: Base table or view not found: 1932 Table 'eventify.events' doesn't exist in engine
+Raw SQL : select 
+					events.id,
+ 					events.name,
+ 					events.content,
+ 					events.date,
+ 					kuenstler.fullname
+ 					FROM events 
+					LEFT JOIN kuenstler ON events.f_kuenstler_id=kuenstler.id
+
 Time : 12:39:22
 SQLSTATE[HY093]: Invalid parameter number: Columns/Parameters are 1-based
 Raw SQL : select 

@@ -1,12 +1,11 @@
 <?php
-namespace eventify;
+include_once 'inc/autoloader.php';
 require "inc/sessionHeader.php";
 if (empty($_SESSION["userId"])) {
 	header("Location: index.php");
 	exit();
 }
-use eventify\Image;
-require "class/Image.php";
+use klassen\Image;
 $images = new Image();
 $getImages = $images->selectAllimages();
 $imageCount = count($getImages);
