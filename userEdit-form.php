@@ -1,31 +1,26 @@
 <?php require "inc/sessionHeader.php";
-if (!empty($_SESSION["userId"])) {
+include_once ("inc/autoloader.php");
+if (empty($_SESSION["userId"])) {
 	header("Location: dashboard.php");
 	exit();
 }
 include("inc/captcha.php");
 $_SESSION['captcha'] = captcha();
+$kuenstler = new \klassen\Kuenstler();
+$getKuenstler = $kuenstler->getMemberById($_SESSION["userId"])
 ?>
 <html>
 <?php require "inc/header.php" ?>
     <div>
-        <form action="register-action.php" method="post" id="frmLogin" onSubmit="return validate();">
+        <form action="userEdit-action.php" method="post" id="frmLogin" onSubmit="return validate();">
             <div class="login-form">
-                <div class="form-head">Künstler Registration</div>
-                <div class="field-column">
-                    <div>
-                        <label for="username">Username</label><span id="user_info" class="error-info"></span>
-                    </div>
-                    <div>
-                        <input name="username" id="username" type="text" class="input-box" pattern="[A-Za-z0-9]{3,}" required>
-                    </div>
-                </div>
+                <div class="form-head">Profil</div>
                 <div class="field-column">
                     <div>
                         <label for="fullname">Full Name</label><span id="fullname_info" class="error-info"></span>
                     </div>
                     <div>
-                        <input name="fullname" id="fullname" type="text" class="input-box" pattern="^(\w\w+)\s(\w+)$" required>
+                        <input name="fullname" id="fullname" type="text" class="input-box" pattern="^(\w\w+)\s(\w+)$" value="<?php echo $getKuenstler["fullname"]; ?>" required>
                     </div>
                 </div>
                 <div class="field-column">
@@ -33,7 +28,7 @@ $_SESSION['captcha'] = captcha();
                         <label for="email">E-Mail</label><span id="email_info" class="error-info"></span>
                     </div>
                     <div>
-                        <input name="email" id="email" type="email" class="input-box" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                        <input name="email" id="email" type="email" class="input-box" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value="<?php echo $getKuenstler["email"]; ?>" required>
                     </div>
                 </div>
                 <div class="field-column">
@@ -41,7 +36,7 @@ $_SESSION['captcha'] = captcha();
                         <label for="password">Password</label><span id="password_info" class="error-info"></span>
                     </div>
                     <div>
-                        <input name="password" id="password" type="password"  pattern=".{6,}" class="input-box" required>
+                        <input name="password" id="password" type="password" class="input-box" placeholder="Altes Password">
                     </div>
                 </div>
                 <div class="field-column">
@@ -49,7 +44,7 @@ $_SESSION['captcha'] = captcha();
                         <label for="password">Password Erneut</label><span id="password2_info" class="error-info"></span>
                     </div>
                     <div>
-                        <input name="password2" id="password2" type="password"  pattern=".{6,}" class="input-box" required>
+                        <input name="password2" id="password2" type="password" placeholder="Altes Password" class="input-box">
                     </div>
                 </div>
 	            <div class="field-column">
@@ -63,12 +58,7 @@ $_SESSION['captcha'] = captcha();
 	            </div>
                 <div class=field-column>
                     <div>
-                        <input type="submit" name="register" value="Register" class="btnLogin">
-                    </div>
-                </div>
-	            <div class=field-column>
-                    <div>
-	                    <a href="login-form.php" >Schon registriert? Anmelden</a>
+                        <input type="submit" name="update" value="Aktualisieren" class="btnLogin">
                     </div>
                 </div>
             </div>
@@ -79,15 +69,11 @@ $_SESSION['captcha'] = captcha();
         var $valid = true;
 
         document.getElementById("user_info").innerHTML = "";
-        document.getElementById("password_info").innerHTML = "";
-        document.getElementById("password2_info").innerHTML = "";
         document.getElementById("fullname_info").innerHTML = "";
         document.getElementById("email_info").innerHTML = "";
         document.getElementById("captcha_info").innerHTML = "";
 
         var userName = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
-        var password2 = document.getElementById("password2").value;
         var fullname = document.getElementById("fullname").value;
         var email = document.getElementById("email").value;
         var captcha = document.getElementById("captcha").value;

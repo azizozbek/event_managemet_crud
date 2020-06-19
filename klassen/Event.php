@@ -90,6 +90,7 @@ class Event
  					events.name,
  					events.content,
  					events.date,
+ 					events.f_kuenstler_id,
  					kuenstler.fullname
  					FROM events 
 					LEFT JOIN kuenstler ON events.f_kuenstler_id=kuenstler.id

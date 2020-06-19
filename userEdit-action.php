@@ -1,12 +1,15 @@
 <?php
 require "inc/sessionHeader.php";
 include_once 'inc/autoloader.php';
-
+if (empty($_SESSION["userId"])) {
+	header("Location: index.php");
+	exit();
+}
 $member = new \klassen\Kuenstler();
 
-if (! empty($_POST["register"])) {
+if (! empty($_POST["update"])) {
 	$validate = true;
-	$username =     filter_var($_POST["username"], FILTER_SANITIZE_STRING);
+	$id=$_SESSION["userId"];
 	$fullname=      filter_var($_POST["fullname"], FILTER_SANITIZE_STRING);
 	$password =     filter_var($_POST["password"], FILTER_SANITIZE_STRING);
 	$password2 =    filter_var($_POST["password2"], FILTER_SANITIZE_STRING);
@@ -14,9 +17,14 @@ if (! empty($_POST["register"])) {
 	$captcha = filter_var($_POST["captcha"], FILTER_SANITIZE_STRING);
 	$captcha_code = $_SESSION['captcha']['code'];
 
-	if(empty($username) || empty($fullname) || empty($password) || empty($password2) || empty($email) || empty($captcha)){
+	if(empty($fullname) || empty($email) || empty($captcha)){
 		$_SESSION["message"] = ["type" => "warning", "text" => "Bitte füllen Sie die Felder aus"];
 		$validate = false;
+	}
+
+	if(empty($password) || empty($password2)){
+		$currentPass = $member->getMemberById($_SESSION["userId"]);
+		$password = $password2 = $currentPass["password"];
 	}
 
 	if($password != $password2){
@@ -29,24 +37,18 @@ if (! empty($_POST["register"])) {
 		$validate = false;
 	}
 
-	$ifUserAlreadyExists = $member->checkUserExitenz($username);
-	if ($ifUserAlreadyExists) {
-		$_SESSION["message"] = ["type" => "warning", "text" => "Benutzer existier schon"];
-		$validate = false;
-	}
-
 	if($validate){
-		$registerUser = $member->processRegister($username, $password, $fullname, $email);
+		$registerUser = $member->processUpdate($id, $password, $fullname, $email);
 		if($registerUser){
-			$_SESSION["message"] = ["type" => "success", "text" => "Benutzer wurde erfolgreich angelegt. Loggen Sie sich ein"];
-			header("Location: login-form.php");
+			$_SESSION["message"] = ["type" => "success", "text" => "Ihr Profil wurde erfolgreich editiert."];
+			header("Location: dashboard.php");
 			exit();
 		}
 	}
-	header("Location: register-form.php");
+	header("Location: userEdit-form.php");
 
 }else{
 	$_SESSION["message"] = ["type" => "warning", "text" => "Invalid Access"];
-	header("Location: login-form.php");
+	header("Location: index.php");
 	exit();
 }

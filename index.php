@@ -44,8 +44,8 @@ $event = new \klassen\Event();
 				<div class="card-body">
 					<h5 class="card-title"><?php echo $getEvents[$i]["name"];?></h5>
 					<p class="card-text"><?php echo substr($getEvents[$i]["content"], 0, 120); ?>.</p>
-					<a type="button" class="btn btn-sm btn-outline-secondary stretched-link" href="eventSingle.php?eventID=<?php echo $getEvents[$i]["id"]; ?>">View</a>
-					<small class="float-right text-muted"><?php echo $getEvents[$i]["fullname"]; ?></small>
+					<a type="button" class="btn btn-sm btn-outline-secondary " href="eventSingle.php?eventID=<?php echo $getEvents[$i]["id"]; ?>">View</a>
+					<small class="text-muted float-right">Künstler: <a href="userSingle.php?id=<?php echo $getEvents[$i]["f_kuenstler_id"]; ?>"><?php echo $getEvents[$i]["fullname"]; ?></a></small>
 				</div>
 			</div>
 		</div>

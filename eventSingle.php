@@ -29,7 +29,7 @@ $getEvents = $event->getSingleEvent($_REQUEST["eventID"]);
 				<h2><?php echo $getEvents["name"]; ?></h2>
 				<p class="text"><?php echo substr($getEvents["content"], 0, 120); ?>.</p>
 				<div class="d-flex justify-content-between align-items-center">
-					<small class="text-muted float-left">Künstler: <?php echo $getEvents["fullname"]; ?></small>
+					<small class="text-muted float-left">Künstler: <a href="userSingle.php?id=<?php echo $getEvents["f_kuenstler_id"]; ?>"><?php echo $getEvents["fullname"]; ?></a></small>
 					<small class="text-muted float-right"> <?php echo $getEvents["date"]; ?></small>
 				</div>
 				<h3 class="mt-5">Event Fotos</h3>

@@ -15,10 +15,11 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="navbar-nav">
+
 			<?php
 			if(!empty($_SESSION["userId"])) {
 			?>
+			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
 					<a class="nav-link" href="dashboard.php">Dashboard</a>
 				</li>
@@ -28,18 +29,29 @@
 				<li class="nav-item">
 					<a class="nav-link" href="gallery.php">Gallerie</a>
 				</li>
+			</ul>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="userSingle.php?id=<?php echo $_SESSION["userId"];?>">Profil</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="userEdit-form.php">Edit Profil</a>
+				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="logout.php">Logout</a>
 				</li>
+			</ul>
 			<?php }else{ ?>
+		<ul class="navbar-nav">
 				<li class="nav-item">
 					<a class="nav-link" href="register-form.php">Register</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="login-form.php">Login</a>
 				</li>
-			<?php } ?>
 		</ul>
+			<?php } ?>
+
 	</div>
 	</div>
 </nav>
