@@ -1,0 +1,20 @@
+Time : 19:31:41
+SQLSTATE[42S02]: Base table or view not found: 1932 Table 'eventify.events' doesn't exist in engine
+Raw SQL : select 
+					events.id,
+ 					events.name,
+ 					events.content,
+ 					events.date,
+ 					events.f_kuenstler_id,
+ 					kuenstler.fullname
+ 					FROM events 
+					LEFT JOIN kuenstler ON events.f_kuenstler_id=kuenstler.id
+					ORDER BY date
+
+Time : 19:29:16
+SQLSTATE[HY000] [2002] Es konnte keine Verbindung hergestellt werden, da der Zielcomputer die Verbindung verweigerte.
+
+
+Time : 19:29:11
+SQLSTATE[HY000] [2002] Es konnte keine Verbindung hergestellt werden, da der Zielcomputer die Verbindung verweigerte.
+
